@@ -22,7 +22,11 @@ export function ContactForm({ onSubmit }) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    onSubmit(name, number);
+    let newcontact = {
+      name,
+      number,
+    };
+    onSubmit(newcontact);
     setName('');
     setNumber('');
   };

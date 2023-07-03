@@ -10,18 +10,17 @@ export const fetchContacts = createAsyncThunk(
     try {
       const response = await axios.get('/contacts');
       return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-
 // addContact - додавання контакту (метод POST). Базовий тип екшену "contacts/addContact".
 export const addContact = createAsyncThunk(
   'contacts/addContact',
-  async ({ name, number }, thunkAPI) => {
+  async (newcontact, thunkAPI) => {
     try {
-      const response = await axios.post('/contacts', { name, number });
+      const response = await axios.post('/contacts', newcontact);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

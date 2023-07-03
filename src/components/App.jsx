@@ -12,7 +12,7 @@ import {
   getError,
   getIsLoading,
 } from 'redux/selectors';
-import { fetchContacts } from 'redux/operations';
+import { addContact, fetchContacts } from 'redux/operations';
 
 export function App() {
   const dispatch = useDispatch();
@@ -29,18 +29,18 @@ export function App() {
   //   dispatch(deletedContact(contactId));
   // };
 
-  // const addContact = (name, number) => {
-  //   if (
-  //     contacts.find(
-  //       contact => contact.name.toLowerCase() === name.toLowerCase()
-  //     )
-  //   ) {
-  //     alert(`${name} is already in contacts!`);
-  //     return;
-  //   }
+  const onAddContact = newcontact => {
+    if (
+      contacts.find(
+        contact => contact.name.toLowerCase() === newcontact.name.toLowerCase()
+      )
+    ) {
+      alert(`${newcontact.name} is already in contacts!`);
+      return;
+    }
 
-  //   dispatch(addedContact(name, number));
-  // };
+    dispatch(addContact(newcontact));
+  };
 
   const changeFilter = event => dispatch(setFilter(event.currentTarget.value));
 
@@ -55,9 +55,7 @@ export function App() {
   return (
     <Wrapper>
       <Header>Phonebook</Header>
-      <ContactForm
-      // onSubmit={addContact}
-      />
+      <ContactForm onSubmit={onAddContact} />
 
       <h2>Contacts</h2>
       <Filter value={filter} onChange={changeFilter} />
