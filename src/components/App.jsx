@@ -6,13 +6,20 @@ import { Filter } from './filter/Filter';
 import { ContactList } from './contactList/ContactList';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/filterSlice';
-import { getСontacts, getFilter } from 'redux/selectors';
+import {
+  getСontacts,
+  getFilter,
+  getError,
+  getIsLoading,
+} from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
 
 export function App() {
   const dispatch = useDispatch();
   const contacts = useSelector(getСontacts);
   const filter = useSelector(getFilter);
+  const isLoading = useSelector(getIsLoading);
+  const error = useSelector(getError);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -54,6 +61,7 @@ export function App() {
 
       <h2>Contacts</h2>
       <Filter value={filter} onChange={changeFilter} />
+      {isLoading && !error && <b>Request in progress...</b>}
       <ContactList
         filtredContacts={filtredContacts}
         // onDeleteContact={deleteContact}
