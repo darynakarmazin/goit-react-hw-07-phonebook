@@ -1,36 +1,16 @@
 import { createSlice, isAllOf } from '@reduxjs/toolkit';
 import { CONTACTS } from 'redux/constants';
 import { addContact, deleteContact, fetchContacts } from './operations';
-
-const STATUS = {
-  PENDING: 'pending',
-  FULFILLED: 'fulfilled',
-  REJECTED: 'rejected',
-};
-const arrThunks = [fetchContacts, addContact, deleteContact];
-const createThunksType = type => arrThunks.map(el => el[type]);
-
-const handlePending = state => {
-  state.isLoading = true;
-};
-const handleFulfilled = state => {
-  state.isLoading = false;
-  state.error = null;
-};
-const handleFulfilledGet = (state, action) => {
-  state.items = action.payload;
-};
-const handleFulfilledPost = (state, action) => {
-  state.items.push(action.payload);
-};
-const handleFulfilledDelete = (state, action) => {
-  const index = state.items.findIndex(task => task.id === action.payload.id);
-  state.items.splice(index, 1);
-};
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-};
+import {
+  STATUS,
+  createThunksType,
+  handleFulfilled,
+  handleFulfilledDelete,
+  handleFulfilledGet,
+  handleFulfilledPost,
+  handlePending,
+  handleRejected,
+} from './sliceFunction';
 
 const contactsSlice = createSlice({
   name: CONTACTS,
