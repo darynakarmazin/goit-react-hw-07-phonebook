@@ -7,19 +7,19 @@ import { ContactList } from './contactList/ContactList';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/filterSlice';
 import {
-  getСontacts,
-  getFilter,
-  getError,
-  getIsLoading,
+  selectСontacts,
+  selectFilter,
+  selectError,
+  selectIsLoading,
 } from 'redux/selectors';
 import { addContact, deleteContact, fetchContacts } from 'redux/operations';
 
 export function App() {
   const dispatch = useDispatch();
-  const contacts = useSelector(getСontacts);
-  const filter = useSelector(getFilter);
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const contacts = useSelector(selectСontacts);
+  const filter = useSelector(selectFilter);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchContacts());
