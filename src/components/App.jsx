@@ -12,7 +12,7 @@ import {
   getError,
   getIsLoading,
 } from 'redux/selectors';
-import { addContact, fetchContacts } from 'redux/operations';
+import { addContact, deleteContact, fetchContacts } from 'redux/operations';
 
 export function App() {
   const dispatch = useDispatch();
@@ -25,9 +25,9 @@ export function App() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  // const deleteContact = contactId => {
-  //   dispatch(deletedContact(contactId));
-  // };
+  const onDeleteContact = contactId => {
+    dispatch(deleteContact(contactId));
+  };
 
   const onAddContact = newcontact => {
     if (
@@ -62,7 +62,7 @@ export function App() {
       {isLoading && !error && <b>Request in progress...</b>}
       <ContactList
         filtredContacts={filtredContacts}
-        // onDeleteContact={deleteContact}
+        onDeleteContact={onDeleteContact}
       />
     </Wrapper>
   );
