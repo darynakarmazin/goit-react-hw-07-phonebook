@@ -11,8 +11,13 @@ export const ListItem = styled.li`
 
 export const DeleteButton = styled.button`
  background-color: transparent;
- border-radius: 5px;
+ border-radius: 10px;
  border: 0.5px solid;
- padding 5px;
+ padding 2px 6px;
  cursor: pointer;
+
+ &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
 `;

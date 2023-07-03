@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { RiDeleteBinLine } from 'react-icons/ri';
+import { AiOutlinePhone } from 'react-icons/ai';
 
 import {
   ListItem,
@@ -8,8 +10,12 @@ import {
 
 export const ContactListItem = ({ name, number, onDeleteContact, id }) => (
   <ListItem>
-    {name} : {number}
-    <DeleteButton onClick={() => onDeleteContact(id)}>Delete</DeleteButton>
+    <div>
+      <AiOutlinePhone size={20} /> {name} : {number}
+    </div>
+    <DeleteButton onClick={() => onDeleteContact(id)}>
+      <RiDeleteBinLine size={20} />
+    </DeleteButton>
   </ListItem>
 );
 
